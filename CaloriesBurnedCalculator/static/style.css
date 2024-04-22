@@ -41,9 +41,9 @@ h1 {
 }
 
 .caloriescont ul li {
-  list-style: none;
+  content: '🔥';
   margin-bottom: 20px;
-  border-bottom: 2px solid #efa5a5;
+  border-bottom: 3px solid #6501b7;
   width: 80%;
 }
 
@@ -55,7 +55,7 @@ h1 {
 }
 
 .caloriescont h5 {
-  color: #19eca9;
+  color: #b8ea00;
 }
 
 .servingsize {
