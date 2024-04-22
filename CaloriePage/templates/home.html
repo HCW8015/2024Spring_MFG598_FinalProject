@@ -76,16 +76,16 @@
                         <div class="col-md-6">
                             <h2 class="mt-3 mb-4">Nutritional Values </h2><span></span>
                             <ul>
-                                <li class="servingsize">Serving Size per 100Grams <span class="float-end"></span></li>
-                                <li>Protein: <span class="float-end">{{api.0.protein_g}}<span></li>
-                                <li>Carbohydrates: <span class="float-end">{{api.0.carbohydrates_total_g}}</span></li>
-                                <li>Saturated fat: <span class="float-end">{{api.0.fat_saturated_g}}</span></li>
-                                <li>Total Fat: <span class="float-end">{{api.0.fat_total_g}}</span></li>
-                                <li>Fiber Content: <span class="float-end">{{api.0.fiber_g}}</span></li>
-                                <li>Cholesterol: <span class="float-end">{{api.0.cholesterol_mg}}</span></li>
-                                <li>Sodium:<span class="float-end">{{api.0.sodium_mg}}</span></li>
-                                <li>Sugar: <span class="float-end">{{api.0.sugar_g}}</span></li>
-                                <li>Potassium: <span class="float-end">{{api.0.potassium_mg}}</span></li>
+                                <li class="servingsize" style="text-align: center;">Serving Size per <strong>100</strong> Grams <span class="float-end"></span></li>
+                                <li>🥩 Protein ➔ <strong class="float-end" style="color: rgb(0, 0, 0)">{{api.0.protein_g}}</strong></li>
+                                <li>🍙 Carbohydrates ➔ <strong class="float-end" style="color: rgb(0, 0, 0)">{{api.0.carbohydrates_total_g}}</strong></li>
+                                <li>🍟 Saturated fat ➔ <strong class="float-end" style="color: rgb(0, 0, 0)">{{api.0.fat_saturated_g}}</strong></li>
+                                <li>🍔 Total Fat ➔ <strong class="float-end" style="color: rgb(0, 0, 0)">{{api.0.fat_total_g}}</strong></li>
+                                <li>🥦 Fiber Content ➔ <strong class="float-end" style="color: rgb(0, 0, 0)">{{api.0.fiber_g}}</strong></li>
+                                <li>🥠 Cholesterol ➔ <strong class="float-end" style="color: rgb(0, 0, 0)">{{api.0.cholesterol_mg}}</strong></li>
+                                <li>🧂 Sodium ➔ <strong class="float-end" style="color: rgb(0, 0, 0)">{{api.0.sodium_mg}}</strong></li>
+                                <li>🍩 Sugar ➔ <strong class="float-end" style="color: rgb(0, 0, 0)">{{api.0.sugar_g}}</strong></li>
+                                <li>🦐 Potassium ➔ <strong class="float-end" style="color: rgb(0, 0, 0)">{{api.0.potassium_mg}}</strong></li>
                             </ul>
                             <div class="col-md-9 text-center">
                                 <h4><a href="{% url 'calcom' %}"><button type="submit" class="btn btn-primary">Record your food comsumption</button></a></h4>
@@ -100,7 +100,7 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-md-10">
-                            <h4 class="mt-3 mb-4 text-center">To burn "{{api.0.calories}}" calories you will have to</h4>
+                            <h4 class="mt-3 mb-4 text-center">To burn <strong style="color: rgb(245, 91, 9);">"{{api.0.calories}}"</strong> calories you will have to ......</h4>
                         </div>
                     </div>
                     <div class="row">
@@ -110,8 +110,8 @@
                                     <img src="{% static 'images/running.png'%} " alt="...">
                                 </div>
                                 <div class="flex-grow-1 ms-2">
-                                    <h5> Jog </h5>
-                                    <p>you will have to jog for <strong>{{api.0.calories |div:645|mul:60|floatformat:0}}</strong> Minutes</p>
+                                    <h5 style="color: #719101;"> Jog </h5>
+                                    <p>Jog for <strong style="color: rgb(245, 91, 9);">{{api.0.calories |div:645|mul:60|floatformat:0}}</strong> Minutes</p>
                                 </div>
                             </div>
                         </div>
@@ -120,20 +120,20 @@
                                 <div class="flex-shrink-0">
                                     <img src="{% static 'images/stairstepper.png'%}" alt="...">
                                 </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <h5> Stair Stepper </h5>
-                                    <p>you will have to stair stepper for <strong>{{api.0.calories |div:588|mul:60|floatformat:0}}</strong> Minutes</p>
+                                <div class="flex-grow-2 ms-2">
+                                    <h5 style="color: #719101;"> Stair Stepper </h5>
+                                    <p>Stair stepper for <strong style="color: rgb(245, 91, 9);">{{api.0.calories |div:588|mul:60|floatformat:0}}</strong> Minutes</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="d-flex align-items-center mb-5">
+                            <div class="d-flex align-items-center mb-2">
                                 <div class="flex-shrink-0">
                                     <img src="{% static 'images/weightlifting.png'%}" alt="...">
                                 </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <h5> Weight Lifting </h5>
-                                    <p>you will have to weight lifting for <strong>{{api.0.calories |div:484|mul:60|floatformat:0}}</strong> Minutes</p>
+                                <div class="flex-grow-1 ms-2">
+                                    <h5 style="color: #719101;"> Weight Lifting </h5>
+                                    <p>Weight lifting for <strong style="color: rgb(245, 91, 9);">{{api.0.calories |div:484|mul:60|floatformat:0}}</strong> Minutes</p>
                                 </div>
                             </div>
                         </div>
@@ -142,9 +142,9 @@
                                 <div class="flex-shrink-0">
                                     <img src="{% static 'images/Elliptical.png'%}" alt="...">
                                 </div>
-                                <div class="flex-grow-1 ms-4">
-                                    <h5> Elliptical </h5>
-                                    <p>you will have to elliptical for <strong>{{api.0.calories |div:530|mul:60|floatformat:0}}</strong> Minutes</p>
+                                <div class="flex-grow-1 ms-2">
+                                    <h5 style="color: #719101;"> Elliptical </h5>
+                                    <p>Elliptical for <strong style="color: rgb(245, 91, 9);">{{api.0.calories |div:530|mul:60|floatformat:0}}</strong> Minutes</p>
                                 </div>
                             </div>
                         </div>
@@ -215,4 +215,16 @@
                 </script>  
                 
 </body>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+    * {
+        .caloriescont ul li {
+            list-style: none;
+            margin-bottom: 15px;
+            border-bottom: 5px solid #6501b7;
+            width: 80%;
+            text-align: start;
+        }
+    }
+</style>
 </html>
