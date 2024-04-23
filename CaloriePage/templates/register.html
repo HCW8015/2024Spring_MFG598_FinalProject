@@ -22,6 +22,7 @@
         <h2 style="color: #821818;">{{message}}</h2>
       {% endfor %}
     {% endif %}
+    <!-- Main code that html connected to views.py -->
     <form action="#" method="POST">
       {% csrf_token %}
       <div class="input-box">
@@ -38,13 +39,14 @@
       <div class="input-box button">
         <input type="Submit" value="Register">
       </div>
+      <!-- Create a link to let user login -->
       <div class="text">
         <h3>have an account? <a href="{% url 'login' %}">Login here</a></h3>
       </div>
     </form>
   </div>
 </body>
-
+  <!-- Design the website style -->
 <style>
   @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 *{

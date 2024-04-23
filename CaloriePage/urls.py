@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+#The urls for the CaloriePage app
 urlpatterns = [
     path('', views.home, name='home'),
     path('register/', views.register,name='register'),

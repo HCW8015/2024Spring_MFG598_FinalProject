@@ -14,8 +14,8 @@ import csv
 #5wQQ3p0lqaaPdTlYjWRurQ==NlrOuWQBRVxTAoUD
 # Create your views here.
 
-
-def csvExport(request):
+#exporting data to csv
+def csvExport(request): 
     foodData = caloriesConsumption.objects.all()
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=foodData.csv'
@@ -26,22 +26,25 @@ def csvExport(request):
         writer.writerow(food)
     return response
 
+#The food search page, where the user can search for food and get the calorie content of the food, using the API
 def home(request):
-    
     if request.method == "POST":
         query = request.POST['query']
         api_url = 'https://api.api-ninjas.com/v1/nutrition?query='
         api_request = requests.get (api_url + query, headers = {'X-Api-Key': '5wQQ3p0lqaaPdTlYjWRurQ==NlrOuWQBRVxTAoUD'})
         try:
+            #load the api request content into json
             api = json.loads(api_request.content)
             print(api_request.content)
         except Exception as e:
-            api = "Oops! Somthing wrong with this api"
+            api = "Somthing wrong with this api"
+            #see the api content
             print(api)
         return render(request, 'home.html',{'api':api})
     else: 
         return render(request, 'home.html',{'query':'Please enter a valid query'})
     
+#The calorie record page, where the user can see the food they have consumed and record it, and also export the data to a csv file
 def calcom(request):
     foodCalorie = None
     if request.method == 'POST':
@@ -51,18 +54,19 @@ def calcom(request):
         try:
             api = json.loads(api_request.content)
             #print(api_request.content)
+            #see the food and calorie content
             print(api[0]['calories'])
             print(api[0]['name'])
         except Exception as e:
             api = "Oops! Somthing wrong with this api"
             print(api)
+        #save the food and calorie content to the database using numpy
         food = np.array(api[0]['name'])
         foodCalorie = np.array(api[0]['calories'])
         newFood = caloriesConsumption(user=request.user, foodName= food, foodCalorie=foodCalorie)
         newFood.save()
 
-
-
+    #get all the food items consumed by the user
     allFoods = caloriesConsumption.objects.filter(user=request.user)
     context = {
         'foods': allFoods,
@@ -70,6 +74,7 @@ def calcom(request):
     }
     return render(request, 'calcom.html', context)
 
+#The user registration page
 def register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -85,17 +90,20 @@ def register(request):
             messages.error(request, 'Error! user already exists, try again pls.')
             return redirect('register')
         
+        #create a new user
         newUser = User.objects.create_user(username=username, email=email, password=password)
         newUser.save()
         messages.success(request,'User successfully created, login now.')
         return redirect('login')
     return render(request, 'register.html', {})
 
+#The user logout page
 def loginpage(request):
     if request.method == 'POST':
         username = request.POST.get('uname')
         password = request.POST.get('pass')
 
+        #authenticate the user
         validateUser = authenticate(username=username, password=password)
         if validateUser is not None:
             login(request, validateUser)
@@ -105,13 +113,14 @@ def loginpage(request):
             return redirect('login')
     return render(request, 'login.html', {})    
 
+#If user wants to delete a food item from the list
 def DeleteFood(request,name):
     getFood = caloriesConsumption.objects.get(user=request.user,foodName=name)
     getFood.delete()
     return redirect('calcom')
 
     
-
+#If user wants to plot a chart of the food items consumed
 def plotChart(request):
     allFoods = caloriesConsumption.objects.filter(user=request.user)
     foodNames = np.array([food.foodName for food in allFoods])
@@ -121,6 +130,5 @@ def plotChart(request):
     plt.legend(loc='upper right', labels=foodNames)
     plt.tight_layout()
     plt.show()
-
     return redirect('calcom')
     
